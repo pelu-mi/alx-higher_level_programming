@@ -1,7 +1,12 @@
 #!/usr/bin/python3
 def best_score(a_dictionary):
-    if a_dictionary != None:
-        new_list = [a_dictionary[x] for x in sorted(a_dictionary)]
-        return max(new_list)
+    if a_dictionary is not None:
+        m = ''
+        num = -10000
+        for i in sorted(a_dictionary):
+            if a_dictionary[i] > num:
+                num = a_dictionary[i]
+                m = i
+        return m
     else:
         return None
