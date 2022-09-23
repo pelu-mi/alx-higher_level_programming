@@ -15,37 +15,32 @@ void print_python_bytes(PyObject *p);
 
 void print_python_list(PyObject *p)
 {
-	int size, alloc, i;
-	PyObject *obj;
+        int size, alloc, i;
+        const char *type;
+        PyListObject *list = (PyListObject *)p;
+        PyVarObject *var = (PyVarObject *)p;
 
-	printf("[*] Python list info");
+        size = var->ob_size;
+        alloc = list->allocated;
 
-	size = get_SIZE(p);
-	alloc = ((PyListObject *)p)->allocated;
+        printf("[*] Python list info\n");
+        printf("[*] Size of the Python List = %d\n", size);
+        printf("[*] Allocated = %d\n", alloc);
 
-	printf("[*] Size of the Python List = %d\n", size);
-	printf("[*] Allocated = %d\n", alloc);
-	for (i = 0; i < size; i++)
-	{
-		printf("Element %d: ", i);
-
-		obj = list_GetItem(p, i);
-		printf("%s\n", get_TYPE(obj)->tp_name); // modify
-	}
+        for (i = 0; i < size; i++)
+        {
+                type = list->ob_item[i]->ob_type->tp_name;
+                printf("Element %d: %s\n", i, type);
+                if (strcmp(type, "bytes") == 0)
+                        print_python_bytes(list->ob_item[i]);
+        }
 }
-
 
 /**
  * print_python_bytes - Function to print a max of 10 bytes
  * @p: PyObject instance
  * Return: Nothing
  */
-/**
-void print_python_bytes(PyObject *p)
-{
-	//;
-}
-*/
 void print_python_bytes(PyObject *p)
 {
         unsigned char i, size;
@@ -75,36 +70,4 @@ void print_python_bytes(PyObject *p)
                 else
                         printf(" ");
         }
-}
-
-
-
-
-/* ----------------------------------------------------------- */
-
-
-/* Helper Functions */
-PyObject * list_GetItem(PyObject *op, Py_ssize_t i)
-{
-    if (!PyList_Check(op)) {
-        PyErr_BadInternalCall();
-        return NULL;
-    }
-    if (!valid_index(i, Py_SIZE(op))) {
-        _Py_DECLARE_STR(list_err, "list index out of range");
-        PyErr_SetObject(PyExc_IndexError, &_Py_STR(list_err));
-        return NULL;
-    }
-    return ((PyListObject *)op) -> ob_item[i];
-}
-
-
-Py_ssize_t get_SIZE(PyObject *ob) {
-    PyVarObject *var_ob = _PyVarObject_CAST(ob);
-    return var_ob->ob_size;
-}
-
-
-PyTypeObject* get_TYPE(PyObject *ob) {
-    return ob->ob_type;
 }
