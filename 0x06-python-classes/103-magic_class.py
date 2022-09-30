@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Module description goes here"""
+import math
 
 
 class MagicClass:
