@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 import math
-
+"""Module documentation goes here"""
 
 class MagicClass:
     """Class Description goes here"""
