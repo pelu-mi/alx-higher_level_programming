@@ -65,7 +65,6 @@ class Square:
                 print("#", end="")
             print("")
 
-
     def __str__(self):
         """Format printing of a Square"""
         s = ""
