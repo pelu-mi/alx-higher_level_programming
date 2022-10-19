@@ -2,7 +2,7 @@
 """Define a locked class"""
 
 
-class LockedClass(object):
+class LockedClass:
    """
    Locked class
    """
