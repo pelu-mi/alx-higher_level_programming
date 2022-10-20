@@ -83,7 +83,7 @@ Traceback (most recent call last):
 TypeError: m_a must be a list
 >>> print(matrix_mul([[3]], "Yo"))
 Traceback (most recent call last):
-TypeError: m_b must be a list of lists
+TypeError: m_b must be a list
 
 
 Each input is expected to be a list of lists else, a TypeError is raised
