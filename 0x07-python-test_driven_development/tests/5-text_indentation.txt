@@ -1,0 +1,59 @@
+# 5-text_indentation.txt
+
+================================
+How to use 5-text_indentation.py
+================================
+
+This module defines a function ``text_indentation(text)`` that prints text
+with indentation after some characters ('.', ':', '?').
+
+Usage
+=====
+
+``text_indentation(...)`` prints out the text input with indentation. The
+input expected is a string.
+
+
+Strings
+=======
+
+First we import the function.
+
+::
+
+>>> text_indentation = __import__('5-text_indentation').text_indentation
+
+
+This function works as expected with strings
+
+::
+
+>>> text_indentation("Hello. Hi: How are you?")
+Hello.
+<BLANKLINE>
+Hi:
+<BLANKLINE>
+How are you?
+<BLANKLINE>
+>>> text_indentation("")
+
+
+Non-strings
+===========
+
+If the input is not a string, a TypeError is raised
+
+::
+
+>>> text_indentation(2)
+Traceback (most recent call last):
+TypeError: text must be a string
+
+
+If there is no input, a TypeError is raised
+
+::
+
+>>> text_indentation()
+Traceback (most recent call last):
+TypeError: text_indentation() missing 1 required positional argument: 'text'
