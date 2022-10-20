@@ -1,0 +1,171 @@
+# 100-matrix_mul.txt
+
+=============================
+How to use 100-matrix_mul.txt
+=============================
+
+This module defines a function ``matrix_mul(m_a, m_b)``. This function finds
+the matrix product of m_a and m_b.
+
+Usage
+=====
+
+``matrix_mul`` returns a new list of lists of numbers. This was designed to
+work with list of lists of integers and floats only.
+
+
+Numbers
+=======
+
+First we import the function.
+
+::
+
+>>> matrix_mul = __import__('100-matrix_mul').matrix_mul
+
+
+The function works as expected with list of list of positive integers as well
+as negative integers.
+
+::
+
+>>> print(matrix_mul([[1, 2]], [[3, 4], [5, 6]]))
+[[13, 16]]
+>>> print(matrix_mul([[-1, -2]], [[-3, -4], [-5, -6]]))
+[[13, 16]]
+
+
+The function also works as expected with a list of list of positive floats as
+well as negative floats.
+
+::
+
+>>> print(matrix_mul([[1.0, 2.0]], [[3.0, 4.0], [5.0, 6.0]]))
+[[13.0, 16.0]]
+>>> print(matrix_mul([[-1.0, -2.0]], [[3, 4], [5, 6.0]]))
+[[-13.0, -16.0]]
+
+
+The function works well as long as the number of columns in the first matrix
+is the same as the number of rows of the second matrix.
+
+::
+
+>>> print(matrix_mul([[1, 2], [3, 4]], [[1, 2], [3, 4]]))
+[[7, 10], [15, 22]]
+>>> print(matrix_mul([[1, 2, 3]], [[1], [2], [3]]))
+[[14]]
+>>> print(matrix_mul([[1], [2], [3]], [[1, 2, 3]]))
+[[1, 2, 3], [2, 4, 6], [3, 6, 9]]
+
+
+The function also works for single element list of lists.
+
+::
+
+>>> print(matrix_mul([[3]], [[2]]))
+[[6]]
+
+
+Non-Numbers
+===========
+
+``matrix_mul(...)`` expects that both inputs are lists of lists containing
+integers or floats. If any of the arguments does not conform with this, an
+exception is raised.
+
+Each input is expected to be a list else a TypeError is raised
+
+::
+
+>>> print(matrix_mul("Hi", [[2]]))
+Traceback (most recent call last):
+TypeError: m_a must be a list
+>>> print(matrix_mul([[3]], "Yo"))
+Traceback (most recent call last):
+TypeError: m_b must be a list of lists
+
+
+Each input is expected to be a list of lists else, a TypeError is raised
+
+::
+
+>>> print(matrix_mul([[3], ""], [[2]]))
+Traceback (most recent call last):
+TypeError: m_a must be a list of lists
+>>> print(matrix_mul([[3]], [[2], ""]))
+Traceback (most recent call last):
+TypeError: m_b must be a list of lists
+
+
+Each matrix is expected to be non empty else, a ValueError is raised
+
+::
+
+>>> print(matrix_mul([], [[2]]))
+Traceback (most recent call last):
+ValueError: m_a can't be empty
+>>> print(matrix_mul([[3]], [[]]))
+Traceback (most recent call last):
+ValueError: m_b can't be empty
+
+
+If any element of the matrix is not an int or a float, a TypeError is raised.
+If both inputs violate this requirement, only the first exception is raised.
+
+::
+
+>>> print(matrix_mul([[3, ""]], [[2], [4]]))
+Traceback (most recent call last):
+TypeError: m_a should contain only integers or floats
+>>> print(matrix_mul([[3, 4]], [[2], ['']]))
+Traceback (most recent call last):
+TypeError: m_b should contain only integers or floats
+
+>>> print(matrix_mul([[3, ""]], [[2], [""]]))
+Traceback (most recent call last):
+TypeError: m_a should contain only integers or floats
+
+
+Each matrix is expected to be a rectangular matrix else, a TypeError is raised
+
+::
+
+>>> print(matrix_mul([[3], [2, 3]], [[2], [2]]))
+Traceback (most recent call last):
+TypeError: each row of m_a must be of the same size
+>>> print(matrix_mul([[3]], [[2, 3], [2]]))
+Traceback (most recent call last):
+TypeError: each row of m_b must be of the same size
+
+
+If the columns of the first matrix is not equal to the rows in the second
+matrix, then the matrices cannot be multiplied and a TypeError is raised
+
+::
+
+>>> print(matrix_mul([[3]], [[2, 3], [2, 2]]))
+Traceback (most recent call last):
+ValueError: m_a and m_b can't be multiplied
+
+
+if nan and infinity appear in the matrix, the computation will still be
+computed but the results will be nan or infinity
+
+::
+
+>>> print(matrix_mul([[3, 4]], [[float('inf'), 3], [2, 2]]))
+[[inf, 17]]
+>>> print(matrix_mul([[3, 4]], [[float('nan'), 3], [2, 2]]))
+[[nan, 17]]
+>>> print(matrix_mul([[3, 4]], [[float('nan'), 3], [2, float('inf')]]))
+[[nan, inf]]
+
+
+The function does not work if no input is provided
+
+::
+
+>>> print(matrix_mul())
+Traceback (most recent call last):
+TypeError: matrix_mul() missing 2 required positional arguments: 'm_a' and 'm_b'
