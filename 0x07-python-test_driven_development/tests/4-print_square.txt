@@ -68,3 +68,12 @@ If the value is negative, a ValueError is raised
 >>> print_square(-2)
 Traceback (most recent call last):
 ValueError: size must be >= 0
+
+
+If there is no argument, a TypeError is raised
+
+::
+
+>>> print_square()
+Traceback (most recent call last):
+TypeError: print_square() missing 1 required positional argument: 'size'
