@@ -1,0 +1,70 @@
+# 4-print_square.txt
+
+============================
+How to use 4-print_square.py
+============================
+
+This module defines a function ``print_square(size)``. This function prints
+a square of dimensions equal to size.
+
+Usage
+=====
+
+``print_square(...)`` prints a square of the dimensions passed to it. The
+value passed should be a positive integer or zero for it to work.
+
+
+Integers
+========
+
+First we import the function.
+
+::
+
+>>> print_square = __import__('4-print_square').print_square
+
+
+This function works as expected with positive integers and 0
+
+::
+
+>>> print_square(3)
+###
+###
+###
+>>> print_square(1)
+#
+>>> print_square(0)
+
+
+Non-integers
+============
+
+The function does not work with floats, both positive and negative
+
+::
+
+>>> print_square(-0.1)
+Traceback (most recent call last):
+TypeError: size must be an integer
+>>> print_square(1.0)
+Traceback (most recent call last):
+TypeError: size must be an integer
+
+
+It also does not work with other non-int types
+
+::
+
+>>> print_square("")
+Traceback (most recent call last):
+TypeError: size must be an integer
+
+
+If the value is negative, a ValueError is raised
+
+::
+
+>>> print_square(-2)
+Traceback (most recent call last):
+ValueError: size must be >= 0
