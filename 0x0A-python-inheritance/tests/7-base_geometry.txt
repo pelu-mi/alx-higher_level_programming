@@ -71,8 +71,9 @@ TypeError: size must be an integer
 Traceback (most recent call last):
 TypeError: age must be an integer
 
->>> bg.integer_validator("size", None)
+>>> bg.integer_validator("size", True)
 Traceback (most recent call last):
+TypeError: size must be an integer
 >>> bg.integer_validator("size", None)
 Traceback (most recent call last):
 TypeError: size must be an integer
