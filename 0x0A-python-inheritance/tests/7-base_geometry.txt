@@ -1,0 +1,78 @@
+# 7-base_geometry.txt
+
+=============================
+How to use 7-base_geometry.py
+=============================
+
+This module defines a class ``BaseGeometry`` which has two fields, ``width``
+and ``height`` and two attributes ``area()`` and ``integer_validator(...)``
+
+Usage
+=====
+
+``BaseGeometry()`` creates a new class with to 2 fields and 2 attributes.
+
+Values
+======
+
+First we import the function.
+
+::
+
+>>> BaseGeometry = __import__('7-base_geometry').BaseGeometry
+>>> bg = BaseGeometry()
+>>> isinstance(bg, BaseGeometry)
+True
+
+
+When area() is called, an exception is raised.
+
+::
+
+>>> bg.area()
+Traceback (most recent call last):
+Exception: area() is not implemented
+>>> bg.area(1)
+Traceback (most recent call last):
+TypeError: area() takes 1 positional argument but 2 were given
+
+
+integer_validator receives 2 arguments, a string and an int. By default,
+the first argument will always be a string but the second argument may vary.
+
+::
+
+>>> bg.integer_validator("size", 5)
+>>> bg.integer_validator("age", 20)
+
+
+If the integer is not validated, an error is raised using the first argument.
+
+::
+
+>>> bg.integer_validator("size", 0)
+Traceback (most recent call last):
+ValueError: size must be greater than 0
+>>> bg.integer_validator("age", -4)
+Traceback (most recent call last):
+ValueError: age must be greater than 0
+
+>>> bg.integer_validator("size", [1])
+Traceback (most recent call last):
+TypeError: size must be an integer
+>>> bg.integer_validator("age", (1, ))
+Traceback (most recent call last):
+TypeError: age must be an integer
+
+>>> bg.integer_validator("size", "")
+Traceback (most recent call last):
+TypeError: size must be an integer
+>>> bg.integer_validator("age", {})
+Traceback (most recent call last):
+TypeError: age must be an integer
+
+>>> bg.integer_validator("size", None)
+Traceback (most recent call last):
+>>> bg.integer_validator("size", None)
+Traceback (most recent call last):
+TypeError: size must be an integer

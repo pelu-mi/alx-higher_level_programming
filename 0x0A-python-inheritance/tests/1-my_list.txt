@@ -1,0 +1,121 @@
+# 1-my_list.txt
+
+=======================
+How to use 1-my_list.py
+=======================
+
+This module defines a class ``MyList`` that inherits from the list class.
+
+Usage
+=====
+
+``MyList`` is a class that has all the same members as the list class with
+one more attribute. A function ``print_sorted()`` is also a part of the class.
+This function prints out a sorted list based on the original list without
+modifying the original list. The underlying assumption here is that all
+members of the ``MyList`` class will be integers.
+
+Numbers
+=======
+
+First, we import the function
+
+::
+
+>>> MyList = __import__('1-my_list').MyList
+>>> my_list = MyList()
+
+
+The class is a subclass of the list object.
+
+::
+
+>>> issubclass(MyList, list)
+True
+>>> isinstance(my_list, list)
+True
+>>> isinstance(my_list, MyList)
+True
+
+
+The class possesses all the same attributes as the list class.
+
+::
+
+>>> print(my_list)
+[]
+>>> hasattr(my_list, '__str__')
+True
+>>> my_list.append(2)
+>>> print(my_list)
+[2]
+
+
+The attribute print_sorted works regardless of the order of the numbers.
+
+::
+
+>>> my_list.append(5)
+>>> my_list.append(0)
+>>> my_list.append(3)
+>>> my_list
+[2, 5, 0, 3]
+>>> my_list.print_sorted()
+[0, 2, 3, 5]
+>>> my_list
+[2, 5, 0, 3]
+
+
+It also works if the order of the numbers is already sorted.
+
+::
+
+>>> my_list2 = MyList()
+>>> my_list2.append(0)
+>>> my_list2.append(2)
+>>> my_list2.append(3)
+>>> my_list2.append(5)
+>>> my_list2
+[0, 2, 3, 5]
+>>> my_list2.print_sorted()
+[0, 2, 3, 5]
+>>> my_list2
+[0, 2, 3, 5]
+
+
+It also works with negative numbers
+
+::
+
+>>> my_list3 = MyList()
+>>> my_list3.append(-2)
+>>> my_list3.append(-5)
+>>> my_list3.append(-1)
+>>> my_list3
+[-2, -5, -1]
+>>> my_list3.print_sorted()
+[-5, -2, -1]
+>>> my_list3
+[-2, -5, -1]
+
+
+It also works with an empty MyList.
+
+::
+
+>>> my_list4 = MyList()
+>>> my_list4
+[]
+>>> my_list4.print_sorted()
+[]
+>>> my_list4
+[]
+
+
+Also, the list returned by the ``print_sorted()`` function is a new list.
+
+::
+
+>>> my_list == my_list.print_sorted()
+[0, 2, 3, 5]
+False
