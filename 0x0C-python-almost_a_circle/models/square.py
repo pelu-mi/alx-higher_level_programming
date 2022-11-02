@@ -18,4 +18,4 @@ class Square(Rectangle):
         """ Format printing of Square
         """
         return "[Square] ({}) {}/{} - {}".format(self.id, self.x,
-                                                       self.y, self.width)
+                                                 self.y, self.width)
