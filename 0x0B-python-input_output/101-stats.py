@@ -17,6 +17,7 @@ def print_stats(size, status_codes):
     for code in sorted(status_codes):
         print("{}: {}".format(code, status_codes[code]))
 
+
 if __name__ == "__main__":
     import sys
 
