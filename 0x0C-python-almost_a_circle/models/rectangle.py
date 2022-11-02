@@ -120,3 +120,14 @@ class Rectangle(Base):
         else:
             for key in sorted(kwargs):
                 setattr(self, key, kwargs[key])
+
+    def to_dictionary(self):
+        """ Return dictionary representation of rectangle
+        """
+        return {
+            'x': self.x,
+            'y': self.y,
+            'id': self.id,
+            'height': self.height,
+            'width': self.width
+        }
