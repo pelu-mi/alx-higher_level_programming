@@ -46,3 +46,13 @@ class Square(Rectangle):
         else:
             for key in sorted(kwargs):
                 setattr(self, key, kwargs[key])
+
+    def to_dictionary(self):
+        """ Dictionary representation of Square instance
+        """
+        return {
+            'id': self.id,
+            'size': self.size,
+            'x': self.x,
+            'y': self.y
+        }
