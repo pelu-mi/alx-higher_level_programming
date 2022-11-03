@@ -35,8 +35,4 @@ class Base:
         """
         if list_dictionaries is None or list_dictionaries == []:
             return "[]"
-        json_string = "["
-        for dictionary in list_dictionaries:
-            json_string += json.dumps(dictionary)
-        json_string += "]"
-        return json_string
+        return json.dumps(list_dictionaries)
