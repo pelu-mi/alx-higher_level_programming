@@ -6,6 +6,7 @@
 import json
 import os
 import csv
+import turtle
 
 
 class Base:
@@ -171,3 +172,46 @@ class Base:
                     obj_dict["y"] = int(row[3])
                     instances.append(obj_dict)
         return [cls.create(**item) for item in instances]
+
+    @staticmethod
+    def draw(list_rectangles, list_squares):
+        """ Function to draw rectangles and squares using the turtle module
+
+        Args:
+            list_rectangles (list): List of rectangle instances
+            list_squares (list): List of Square instances
+        """
+        # Initialize Turtle
+        turt = turtle.Turtle()
+        turt.screen.bgcolor("#FF8F00")
+        turt.pensize(3)
+        turt.shape("turtle")
+        turt.color("#ffffff")
+        for rectangle in list_rectangles:
+            # Handle Rectangles
+            turt.showturtle()
+            turt.up()
+            turt.goto(rectangle.x, rectangle.y)
+            turt.down()
+            for i in range(2):
+                turt.forward(rectangle.width)
+                turt.left(90)
+                turt.forward(rectangle.height)
+                turt.left(90)
+            turt.hideturtle()
+
+        turt.color("#000000")
+        for square in list_squares:
+            # Handle Squares
+            turt.showturtle()
+            turt.up()
+            turt.goto(square.x, square.y)
+            turt.down()
+            for i in range(2):
+                turt.forward(square.width)
+                turt.left(90)
+                turt.forward(square.height)
+                turt.left(90)
+            turt.hideturtle()
+
+        turtle.exitonclick()
