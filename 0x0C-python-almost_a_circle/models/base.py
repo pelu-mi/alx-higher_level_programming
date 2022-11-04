@@ -5,6 +5,7 @@
 
 import json
 import os
+import csv
 
 
 class Base:
@@ -103,3 +104,70 @@ class Base:
             for item in list_dicts:
                 instances.append(cls.create(**item))
         return instances
+
+    @classmethod
+    def save_to_file_csv(cls, list_objs):
+        """ Class method to save a list of instances to a csv file
+        <class_name>.csv
+
+        Args:
+            list_objs (list): List of instances to save
+        """
+        filename = cls.__name__ + ".csv"
+        with open(filename, 'w', encoding='utf-8') as f:
+            writer = csv.writer(f)
+            if cls.__name__ == "Rectangle":
+                # Handle Rectangle
+                writer.writerow(["id", "width", "height", "x", "y"])
+                for item in list_objs:
+                    id = item.id
+                    width = item.width
+                    height = item.height
+                    x = item.x
+                    y = item.y
+                    writer.writerow([id, width, height, x, y])
+            else:
+                # Handle Square
+                writer.writerow(["id", "size", "x", "y"])
+                for item in list_objs:
+                    id = item.id
+                    size = item.size
+                    x = item.x
+                    y = item.y
+                    writer.writerow([id, size, x, y])
+
+    @classmethod
+    def load_from_file_csv(cls):
+        """ Class method to load class instance from file <class name>.csv
+
+        Returns:
+            list: List of instances of class
+        """
+        filename = cls.__name__ + ".csv"
+        if not os.path.isfile(filename):
+            return []
+        instances = []
+        # Unpack items in file
+        with open(filename, newline='') as f:
+            reader = csv.reader(f)
+            header = next(reader)  # First line is the header
+            for row in reader:
+                # Handle rectangle
+                if cls.__name__ == "Rectangle":
+                    # Rectangle: <id>,<width>,<height>,<x>,<y>
+                    obj_dict = {}
+                    obj_dict["id"] = int(row[0])
+                    obj_dict["width"] = int(row[1])
+                    obj_dict["height"] = int(row[2])
+                    obj_dict["x"] = int(row[3])
+                    obj_dict["y"] = int(row[4])
+                    instances.append(obj_dict)
+                else:
+                    # Square: <id>,<size>,<x>,<y>
+                    obj_dict = {}
+                    obj_dict["id"] = int(row[0])
+                    obj_dict["size"] = int(row[1])
+                    obj_dict["x"] = int(row[2])
+                    obj_dict["y"] = int(row[3])
+                    instances.append(obj_dict)
+        return [cls.create(**item) for item in instances]
