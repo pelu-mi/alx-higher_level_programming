@@ -7,7 +7,7 @@ const func = function (x) {
   return x * i;
 };
 
-const index_list = list.map(func);
+const indexList = list.map(func);
 
 console.log(list);
-console.log(index_list);
+console.log(indexList);
