@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 """ Script that prints the State objects from the database hbtn_0e_6_usa
+    containing the letter a
 """
 import sys
 from model_state import Base, State
@@ -13,5 +14,5 @@ if __name__ == "__main__":
     # Create Session
     Session = sessionmaker(bind=engine)
     session = Session()
-    for instance in session.query(State).order_by(State.id):
+    for instance in session.query(State).filter(State.name.like('%a%')).order_by(State.id):
         print("{}: {}".format(instance.id, instance.name))
