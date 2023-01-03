@@ -1,5 +1,6 @@
 #!/usr/bin/python3
-""" Module documentation for State class definition
+"""
+Script defining a State class and a Base class
 """
 
 from sqlalchemy import Column, Integer, String
