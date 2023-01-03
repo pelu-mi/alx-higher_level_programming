@@ -12,7 +12,7 @@ Base = declarative_base()
 class State(Base):
     """ Declaration of the State class
 
-    Attr:
+    Attributes:
         __tablename__ (str): Name of the table in the db
         id (int): Id of each row
         name (str): name of each row
