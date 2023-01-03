@@ -1,6 +1,5 @@
 #!/usr/bin/python3
-""" Script that creates the State “California” with the City
-    “San Francisco” in the database
+""" Script that creates the State with the City in the database
 """
 
 import sys
