@@ -20,7 +20,7 @@ if __name__ == "__main__":
     Session = sessionmaker(bind=engine)
     session = Session()
     # Code
-    query = session.query(State).outerjoin(City).order_by(State.id, City.id)
+    query = session.query(State).order_by(State.id)
     for state in query.all():
         print("{}: {}".format(state.id, state.name))
         for city in state.cities:
