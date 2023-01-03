@@ -17,4 +17,4 @@ if __name__ == "__main__":
     if query.scalar():
         print(query.scalar())
     else:
-        print("Nothing")
+        print("Not found")
