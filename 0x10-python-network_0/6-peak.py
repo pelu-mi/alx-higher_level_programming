@@ -2,6 +2,7 @@
 """ Module for interview prep
 """
 
+
 def find_peak(list_of_integers):
     """ Function to find peak in a list of integers
     """
