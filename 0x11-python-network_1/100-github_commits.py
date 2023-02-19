@@ -12,7 +12,7 @@ if __name__ == "__main__":
     commits = r.json()
     i = 0
     for commit in commits:
-        print("{}: {}".format(commit.get('sha'), commit.get('commit').get('author')))
+        print("{}: {}".format(commit.get('sha'), commit.get('commit')))
         i = i + 1
         if i >= 10:
             break
